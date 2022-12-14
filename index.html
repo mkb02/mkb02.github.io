@@ -14596,7 +14596,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <p><a href='https://www.kaggle.com/datasets/unsdsn/world-happiness?select=2019.csv'>The World Happiness Report</a> is one such source that monitors this by using data from the Gallup World Poll to 'estimate the extent to which each of six factors – economic production, social support, life expectancy, freedom, absence of corruption, and generosity – contribute to making life evaluations higher in each country than they are in Dystopia, a hypothetical country that has values equal to the world’s lowest national averages for each of the six factors.'</p>
 <p>Another way to monitor this 'happiness' is to look into happiness scores for each country and compare them to factors indicative of (negative) mental health. Examples of this would include rates of depression, suicide, and substance abuse present in each given population. While I will not be investigating substance abuse and suicide rates in relation to mental health in this tutorial, it is something to take note of for the future.</p> 
 <p><a href='https://www.healthdirect.gov.au/signs-mental-health-issue#:~:text=Nine%20signs%20of%20mental%20health%20issues%201%201.,8.%20Feeling%20guilty%20or%20worthless%20...%20More%20items'>Signs of Mental Health Issues</a> | <a href='https://www.cdc.gov/mentalhealth/learn/index.htm'>CDC: Mental Health</a> | <a href='https://ezcareclinic.io/factors-affecting-mental-health/'>Factors Affecting Mental Health</a> | <a href='https://ourworldindata.org/mental-health'>Our World in Data: Mental Health</a> | <a href='https://www.who.int/news-room/fact-sheets/detail/mental-disorders'> WHO: Mental Disorder Factsheet</a> | <a href='https://apps.who.int/gho/data/node.home'>WHO: Global Health Observatory Data Repository</a></p>
-<p>Note: 'Happiness' can mean very different things. The <a href='https://www.merriam-webster.com/dictionary/happiness'>Merriam-Webster Dictionary</a> defines it as 'a state of well-being and contentment' and/or 'a pleasurable or satisfying experience'. I will primarily be using the former definition when referring to this state of being. I would also like to mention that while I will be examining mental illness in relation to 'happiness', this does not mean that mental illness is a direct factor of 'happiness' or vice versa. Mental illness can be genetic, caused by factors not taken into account by the World Happiness Report, and so on.</p>
+<p>Note: 'Happiness' can mean very different things. The <a href='https://www.merriam-webster.com/dictionary/happiness'>Merriam-Webster Dictionary</a> defines it as 'a state of well-being and contentment' and/or 'a pleasurable or satisfying experience'. I will primarily be using the former definition when referring to this state of being. I would also like to mention that while I will be examining mental illness in relation to 'happiness', this does not mean that mental illness is a direct factor of 'happiness', or vice versa. Mental illness can be genetic, caused by factors not taken into account by the World Happiness Report, and so on.</p>
 </div>
 </div>
 </div>
@@ -14826,7 +14826,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Because data for 2019 is not featured here, we will either need to look for a new dataset, switch to 2015 for the World Happiness Index Report, or completely drop the dataset if the third set from data.world proves to be useful.</p>
+<p>Because data for 2019 is not featured here, we will either need to look for a new dataset, switch to 2015 for the World Happiness Index Report, or completely drop this dataset if the third set from data.world proves to be useful.</p>
 
 </div>
 </div>
@@ -15951,7 +15951,19 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Let's start with first viewing all of the columns for the dataframe we created above.</p>
+<p>Before we start anything, let us keep in mind the dataframes we have access to (and will use), in addition to the information they store:</p>
+<li>'happiness_report_2019' - The World Happiness Report Dataset (2019)</li><li>'happiness_report_2017' - The World Happiness Report Dataset (2017)</li><li>'disorders_2017' - The Percentage of each Country's Population with Specific Mental Illnesses/Disorders (2017)</li><li>'happiness_and_mental_health' - The 2nd and 3rd dataframes with a total percentage of each country's population with mental illnesses/disorders (2017)</li>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We will start with first viewing all of the columns for the dataframe we created above.</p>
 
 </div>
 </div>
@@ -16011,6 +16023,342 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Let's first look at how each country's 'happiness' score compares with the percentage of their population with mental illnesses or disorders. We will start by using a scatterplot to visualize this.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">happiness_and_mental_health</span><span class="p">[</span><span class="s1">&#39;%_pop_w_disorders/mental_illnesses&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">happiness_and_mental_health</span><span class="p">[</span><span class="s1">&#39;Happiness.Score&#39;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;matplotlib.collections.PathCollection at 0x1d765f9c190&gt;</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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"
+class="
+jp-needs-light-background
+"
+>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Let's also print out the summary statistics for happiness_and_mental_health['%_pop_w_disorders/mental_illnesses'].</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">[</span><span class="s1">&#39;%_pop_w_disorders/mental_illnesses&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>count    147.000000
+mean      11.216237
+std        2.166738
+min        7.912260
+25%        9.488872
+50%       10.681989
+75%       12.545479
+max       18.974350
+Name: %_pop_w_disorders/mental_illnesses, dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Given these two pieces of information (the graph and the summary statistics), we can see there isn't really a linear relationship between mental illnesses/disorders and country's 'happiness' scores. While this also may be dependent on poor data collection in select countries, bias in the happiness score model, or some other factor not accounted for, most of the countries in the dataframe seem to cluster around 8-14% of the population having some sort of mental illness/disorder (with a few outliers featuring both a high population percentage AND a high happiness score).</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Linear regression models are sensitive to outliers, so let's remove them from the data before running a regression. We will be doing this by removing all the countries with percentages higher than 15 from the dataframe.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># make a copy + keep the original dataframe as is (just in case)</span>
+<span class="n">happiness_and_mental_health2</span> <span class="o">=</span> <span class="n">happiness_and_mental_health</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># drop the rows if the value in happiness_and_mental_health2[&#39;%_pop_w_disorders/mental_illnesses&#39;] &gt; 14.5</span>
+<span class="n">happiness_and_mental_health2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="s1">&#39;%_pop_w_disorders/mental_illnesses&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="s1">&#39;%_pop_w_disorders/mental_illnesses&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>count    140.000000
+mean      10.943507
+std        1.801978
+min        7.912260
+25%        9.457263
+50%       10.466353
+75%       12.311015
+max       14.947158
+Name: %_pop_w_disorders/mental_illnesses, dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Notice how, outside of the mean, std, and max decreasing (as expected), the summary statistics have not changed by much.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We will now run a linear regression.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="n">reg</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="s1">&#39;%_pop_w_disorders/mental_illnesses&#39;</span><span class="p">],</span> <span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="s1">&#39;Happiness.Score&#39;</span><span class="p">],)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>                                         OLS Regression Results                                        
+=======================================================================================================
+Dep. Variable:     %_pop_w_disorders/mental_illnesses   R-squared (uncentered):                   0.962
+Model:                                            OLS   Adj. R-squared (uncentered):              0.962
+Method:                                 Least Squares   F-statistic:                              3519.
+Date:                                Wed, 14 Dec 2022   Prob (F-statistic):                   1.36e-100
+Time:                                        11:53:40   Log-Likelihood:                         -306.59
+No. Observations:                                 140   AIC:                                      615.2
+Df Residuals:                                     139   BIC:                                      618.1
+Df Model:                                           1                                                  
+Covariance Type:                            nonrobust                                                  
+===================================================================================
+                      coef    std err          t      P&gt;|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+Happiness.Score     2.0074      0.034     59.319      0.000       1.940       2.074
+==============================================================================
+Omnibus:                        0.879   Durbin-Watson:                   0.774
+Prob(Omnibus):                  0.644   Jarque-Bera (JB):                0.955
+Skew:                           0.181   Prob(JB):                        0.620
+Kurtosis:                       2.820   Cond. No.                         1.00
+==============================================================================
+
+Notes:
+[1] R² is computed without centering (uncentered) since the model does not contain a constant.
+[2] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Given the Least-Squared regression results, it seems that there is a positive linear relationship between % of the population with mental illnesses/disorders and the happiness score of the given country. This is interesting because this is not what I had expected going in. It is, however, important to reiterate the existence of potential biases in the happiness score and/or inadequate data collection practices regarding mental health (especially likely due to mental health stigma present in these given countries).</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We will now examine the Happiness Report dataset from 2017 to see if we can find any reasons for this.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>For context, # explain how scores are calculated</p>
 
 </div>
 </div>
