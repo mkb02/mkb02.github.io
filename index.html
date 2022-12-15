@@ -15940,7 +15940,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3><b>III. Exploratory Data Analysis</b></h3>
+<h3><b>III. Exploratory Data Analysis & IV. Hypothesis Testing</b></h3>
 </div>
 </div>
 </div>
@@ -16023,7 +16023,513 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Let's first look at how each country's 'happiness' score compares with the percentage of their population with mental illnesses or disorders. We will start by using a scatterplot to visualize this.</p>
+<p>Let's first look at how each country looks in relation to the percentage of their population with mental illnesses or disorders. Code for creating the map is from <a href='https://www.askpython.com/python/examples/plot-geographical-data-python-plotly'>Ask Python</a>.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s2">&quot;Code&quot;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;%_pop_w_disorders/mental_illnesses&#39;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Percentage of Populations with Disorders/Mental Illnesses (2017)&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">PuRd</span><span class="p">)</span>
+ 
+ 
+<span class="n">fig</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;updatemenus&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>While this gives us a good idea of percentages of populations with mental illness/disorders, some of the countries in the above map do not have a percentage either due to data that was lost during merges (conflicting country names), or simply a lack of data present. Also note that more of the 'developed west' (settler countries like the U.S. and Australia, in addition to parts of West Europe like the U.K. and France) have higher percentages. While I am unsure of the psychological state of those in these countries, data collection in other parts of the world (especially those dealing with war like in Syria and Afghanistan) regarding this issue seems lacking.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Let's now look at how each country fares in relation to their happiness report data. Code for creating the maps are, once again, from <a href='https://www.askpython.com/python/examples/plot-geographical-data-python-plotly'>Ask Python</a>.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Happiness.Score&#39;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Countries and their Happiness Score (2017)&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">PuRd</span><span class="p">)</span>
+ 
+ 
+<span class="n">scores</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;updatemenus&quot;</span><span class="p">)</span>
+<span class="n">scores</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Note that while most of the 'western' world had higher percents of the population with mental illness/disorders, they also have the higher 'happiness' scores. Could this be due to bias in the report? How 'happy' are people? Is the higher happiness due to increased standards of living or accomodations for those that need it? What's prioritized in creating these scores?</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Let's now map out countries in relation to their individual factors (and scores for those).</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># look at economy/gdp first</span>
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Economy..GDP.per.Capita.&#39;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Countries and their Economy/Per Capita GDP (2017)&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">PuRd</span><span class="p">)</span>
+ 
+ 
+<span class="n">gdp</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;updatemenus&quot;</span><span class="p">)</span>
+<span class="n">gdp</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Some questions to keep in mind: how heavily is GDP relied upon to determine these scores? Do these scores take into account wealth gaps?</p>
+<p>While two years apart, <a href='https://money.cnn.com/2017/11/03/news/economy/wealth-gap-america/index.html'>this</a> article from 2017 and <a href='https://money.cnn.com/2017/11/03/news/economy/wealth-gap-america/index.html'>this</a> article from 2019 discuss the increasing wealth gap in the United States which makes it harder for lower-income level people to maintain their deserved standard of living. Does the U.S. simply have a 'better' wealth gap than other countries?</p> 
+<p>According to the <a href='https://www.stlouisfed.org/on-the-economy/2017/october/how-us-income-inequality-compare-worldwide'>Federal Reserve Bank of St. Louis</a>, this is not the case. '...Income inequality in the U.S. is large, despite the U.S. having one of the highest levels of income per capita in our sample. Specifically, the Gini coefficient of the U.S. was 40.46 in 2010, very close to the average Gini coefficient of African countries in our sample.'</p> 
+<p>Interesting.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># look at family (social support)</span>
+<span class="n">family</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Family&#39;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Countries and their Family/Social Support Scores (2017)&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">PuRd</span><span class="p">)</span>
+ 
+ 
+<span class="n">family</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;updatemenus&quot;</span><span class="p">)</span>
+<span class="n">family</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This may be an answer to the questions asked earlier regarding countries' percentages of the population with mental illnesses/disorders vs happiness scores. A good social support system tends to go a long way, generally speaking.</p>
+<p>Be sure to note, however, the scale of values here differs from the GDP scale seen earlier. The highest value here is around 1.5, not above.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># look at health/life expectancy</span>
+<span class="n">life_exp</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Health..Life.Expectancy.&#39;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Countries and their Health/Life Expectancy Scores (2017)&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">PuRd</span><span class="p">)</span>
+ 
+ 
+<span class="n">life_exp</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;updatemenus&quot;</span><span class="p">)</span>
+<span class="n">life_exp</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Once again, note that the the scale of values differs here as well. The highest value doesn't even reach 1.5 for this factor.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># look at freedom (to make own decisions)</span>
+<span class="n">freedom</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Freedom&#39;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Countries and their Freedom Scores (2017)&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">PuRd</span><span class="p">)</span>
+ 
+ 
+<span class="n">freedom</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;updatemenus&quot;</span><span class="p">)</span>
+<span class="n">freedom</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The scale here is EVEN lower than before. Why is the highest value here (0.6) less than half of the highest value for GDP (over 1.5)? Is this weighed differently? If so, why?</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># look at generosity </span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Generosity&#39;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Countries and their Generosity Scores (2017)&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">PuRd</span><span class="p">)</span>
+ 
+ 
+<span class="n">gen</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;updatemenus&quot;</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># look at the people&#39;s trust in government/government corruption (perceptions of corruption)</span>
+<span class="n">trust</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">happiness_and_mental_health</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Trust..Government.Corruption.&#39;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Countries and their Trust/Government Corruption Scores (2017)&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">PuRd</span><span class="p">)</span>
+ 
+ 
+<span class="n">trust</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;updatemenus&quot;</span><span class="p">)</span>
+<span class="n">trust</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Is it good that this scale is even smaller?</p>
+<p>In my opinion, it seems like the results given here may be more 'honest' due to not having an extremely large scale, though this is not backed by any data discussing how corrupt these countries really are.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># explore hypotheses regarding happiness</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Though this somewhat deviates from what was discussed above, I would like to expand on the first points regarding percentage of disorders/mental ilnesses vs happiness scores. To explore this relationship further, we will start by using a scatterplot to visualize it.</p>
 
 </div>
 </div>
@@ -16061,7 +16567,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.collections.PathCollection at 0x1d765f9c190&gt;</pre>
+<pre>&lt;matplotlib.collections.PathCollection at 0x1d769d04520&gt;</pre>
 </div>
 
 </div>
@@ -16154,7 +16660,7 @@ Name: %_pop_w_disorders/mental_illnesses, dtype: float64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Given these two pieces of information (the graph and the summary statistics), we can see there isn't really a linear relationship between mental illnesses/disorders and country's 'happiness' scores. While this also may be dependent on poor data collection in select countries, bias in the happiness score model, or some other factor not accounted for, most of the countries in the dataframe seem to cluster around 8-14% of the population having some sort of mental illness/disorder (with a few outliers featuring both a high population percentage AND a high happiness score).</p>
+<p>Given these two pieces of information (the graph and the summary statistics), we can see there is some sort of a positive linear relationship between mental illnesses/disorders and country's 'happiness' scores. Additionally, while this also may be dependent on poor data collection in select countries, bias in the happiness score model, or some other factor not accounted for, most of the countries in the dataframe seem to cluster around 8-14% of the population having some sort of mental illness/disorder (with a few outliers featuring both a high population percentage AND a high happiness score).</p>
 
 </div>
 </div>
@@ -16166,7 +16672,7 @@ Name: %_pop_w_disorders/mental_illnesses, dtype: float64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Linear regression models are sensitive to outliers, so let's remove them from the data before running a regression. We will be doing this by removing all the countries with percentages higher than 15 from the dataframe.</p>
+<p>Let's run a linear regression to be sure. Because these models are sensitive to outliers, we'll remove them from the data before running a regression. This will be done by removing all of the countries with percentages higher than 14% from the dataframe.</p>
 
 </div>
 </div>
@@ -16181,8 +16687,8 @@ Name: %_pop_w_disorders/mental_illnesses, dtype: float64
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># make a copy + keep the original dataframe as is (just in case)</span>
 <span class="n">happiness_and_mental_health2</span> <span class="o">=</span> <span class="n">happiness_and_mental_health</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="c1"># drop the rows if the value in happiness_and_mental_health2[&#39;%_pop_w_disorders/mental_illnesses&#39;] &gt; 14.5</span>
-<span class="n">happiness_and_mental_health2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="s1">&#39;%_pop_w_disorders/mental_illnesses&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># drop the rows if the value in happiness_and_mental_health2[&#39;%_pop_w_disorders/mental_illnesses&#39;] &gt; 14</span>
+<span class="n">happiness_and_mental_health2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="n">happiness_and_mental_health2</span><span class="p">[</span><span class="s1">&#39;%_pop_w_disorders/mental_illnesses&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">14</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16220,14 +16726,14 @@ Name: %_pop_w_disorders/mental_illnesses, dtype: float64
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>count    140.000000
-mean      10.943507
-std        1.801978
+<pre>count    130.000000
+mean      10.679310
+std        1.583165
 min        7.912260
-25%        9.457263
-50%       10.466353
-75%       12.311015
-max       14.947158
+25%        9.406428
+50%       10.327404
+75%       11.927166
+max       13.959981
 Name: %_pop_w_disorders/mental_illnesses, dtype: float64
 </pre>
 </div>
@@ -16237,18 +16743,6 @@ Name: %_pop_w_disorders/mental_illnesses, dtype: float64
 
 </div>
 
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Notice how, outside of the mean, std, and max decreasing (as expected), the summary statistics have not changed by much.</p>
-
-</div>
-</div>
-</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -16296,24 +16790,24 @@ Name: %_pop_w_disorders/mental_illnesses, dtype: float64
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>                                         OLS Regression Results                                        
 =======================================================================================================
-Dep. Variable:     %_pop_w_disorders/mental_illnesses   R-squared (uncentered):                   0.962
-Model:                                            OLS   Adj. R-squared (uncentered):              0.962
-Method:                                 Least Squares   F-statistic:                              3519.
-Date:                                Wed, 14 Dec 2022   Prob (F-statistic):                   1.36e-100
-Time:                                        11:53:40   Log-Likelihood:                         -306.59
-No. Observations:                                 140   AIC:                                      615.2
-Df Residuals:                                     139   BIC:                                      618.1
+Dep. Variable:     %_pop_w_disorders/mental_illnesses   R-squared (uncentered):                   0.959
+Model:                                            OLS   Adj. R-squared (uncentered):              0.958
+Method:                                 Least Squares   F-statistic:                              2993.
+Date:                                Wed, 14 Dec 2022   Prob (F-statistic):                    3.95e-91
+Time:                                        21:47:04   Log-Likelihood:                         -286.63
+No. Observations:                                 130   AIC:                                      575.3
+Df Residuals:                                     129   BIC:                                      578.1
 Df Model:                                           1                                                  
 Covariance Type:                            nonrobust                                                  
 ===================================================================================
                       coef    std err          t      P&gt;|t|      [0.025      0.975]
 -----------------------------------------------------------------------------------
-Happiness.Score     2.0074      0.034     59.319      0.000       1.940       2.074
+Happiness.Score     1.9916      0.036     54.708      0.000       1.920       2.064
 ==============================================================================
-Omnibus:                        0.879   Durbin-Watson:                   0.774
-Prob(Omnibus):                  0.644   Jarque-Bera (JB):                0.955
-Skew:                           0.181   Prob(JB):                        0.620
-Kurtosis:                       2.820   Cond. No.                         1.00
+Omnibus:                        1.220   Durbin-Watson:                   0.697
+Prob(Omnibus):                  0.543   Jarque-Bera (JB):                1.300
+Skew:                           0.218   Prob(JB):                        0.522
+Kurtosis:                       2.775   Cond. No.                         1.00
 ==============================================================================
 
 Notes:
@@ -16334,31 +16828,7 @@ Notes:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Given the Least-Squared regression results, it seems that there is a positive linear relationship between % of the population with mental illnesses/disorders and the happiness score of the given country. This is interesting because this is not what I had expected going in. It is, however, important to reiterate the existence of potential biases in the happiness score and/or inadequate data collection practices regarding mental health (especially likely due to mental health stigma present in these given countries).</p>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We will now examine the Happiness Report dataset from 2017 to see if we can find any reasons for this.</p>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>For context, # explain how scores are calculated</p>
+<p>Given the Least-Squared regression results, it seems that there is a positive linear relationship between % of the population with mental illnesses/disorders and the happiness score of the given country. This is interesting because this is not what I had expected prior to any exploration of the data. It is, however, important to reiterate the existence of potential biases in the happiness score, the way survey questions were asked/phrased, and/or inadequate data collection practices regarding mental health (especially likely due to mental health stigma present in these given countries).</p>
 
 </div>
 </div>
